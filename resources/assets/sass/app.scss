@@ -1,0 +1,38 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+/**自写CSS  */
+a{
+	cursor:pointer;
+}
+.logo{
+	font-size:1.7rem;
+	color:#fff;
+	&:hover{
+		color:#ccc;
+		text-decoration: none;
+	}
+}
+.home-content{
+	padding:100px 0px;
+	background:url('/images/login.jpg') repeat;
+	.info{
+		font-size:1.5rem;
+	}
+	.login{
+		background-color:#fff;
+		padding:30px;
+		div{
+			margin:20px 0px;
+		}
+	}
+}
+
+
+
