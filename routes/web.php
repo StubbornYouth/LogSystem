@@ -11,5 +11,7 @@
 |
 */
 
-Route::get('/','IndexController@home')->name('home');
-
+Route::get('/login','SessionController@create')->name('login');
+Route::resource('/users','UserController');
+Route::post('/login','SessionController@store')->name('login');
+Route::delete('/logout','SessionController@destroy')->name('logout');

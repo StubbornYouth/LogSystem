@@ -8,6 +8,6 @@ class Indexcontroller extends Controller
 {
     //
     function home(){
-    	return view('static_pages.home');
+    	
     }
 }

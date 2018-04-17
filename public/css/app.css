@@ -10406,9 +10406,13 @@ a {
   text-decoration: none;
 }
 
+.row {
+  margin: 0px;
+}
+
 .home-content {
-  padding: 100px 0px;
-  background: url("/images/login.jpg") repeat;
+  padding: 120px 0px;
+  background: url("/images/login.jpg") no-repeat;
 }
 
 .home-content .info {
@@ -10417,10 +10421,24 @@ a {
 
 .home-content .login {
   background-color: #fff;
-  padding: 30px;
+  padding: 40px;
 }
 
 .home-content .login div {
   margin: 20px 0px;
+}
+
+.register {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 60px 0px;
+}
+
+.ul-error {
+  margin-bottom: 0px;
+}
+
+.session-msg {
+  margin-top: 10px;
 }
 

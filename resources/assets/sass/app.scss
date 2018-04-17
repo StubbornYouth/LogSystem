@@ -19,19 +19,33 @@ a{
 		text-decoration: none;
 	}
 }
+.row{
+	margin:0px;
+}
 .home-content{
-	padding:100px 0px;
-	background:url('/images/login.jpg') repeat;
+	padding:120px 0px;
+	background:url('/images/login.jpg') no-repeat;
 	.info{
 		font-size:1.5rem;
 	}
 	.login{
 		background-color:#fff;
-		padding:30px;
+		padding:40px;
 		div{
 			margin:20px 0px;
 		}
 	}
+}
+.register{
+	border:1px solid #ccc;
+	padding:20px;
+	margin:60px 0px;
+}
+.ul-error{
+	margin-bottom:0px;
+}
+.session-msg{
+	margin-top:10px;
 }
 
 
