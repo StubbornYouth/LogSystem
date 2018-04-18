@@ -4,6 +4,7 @@ namespace App\Http\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassword;
 
 class User extends Authenticatable
 {
@@ -28,4 +29,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //用户模型初始化后自动调用
+    public static function boot(){
+        parent::boot();
+        //用户模型创建之前的监听事件
+        static::creating(function($user){
+            $user->activation_token=str_random(30);
+        });
+    }
+
+    public function sendPasswordResetNotification($token){
+        $this->notify(new ResetPassword($token));
+    }
 }
