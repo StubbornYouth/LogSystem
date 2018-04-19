@@ -1,8 +1,7 @@
 @extends('layouts.default')
 @section('title','用户注册')
 @section('content')
-	<div class="container">
-		<div class="row">
+	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6 register">
 			<h5>注册</h5>
@@ -30,7 +29,5 @@
 			</form>
 		</div>
 		<div class="col-md-3"></div>
-		</div>
 	</div>
-	@include('layouts._footer')
 @stop

@@ -16,8 +16,8 @@
 			        {{ Auth::user()->name }}
 			      </a>
 			      <div class="dropdown-menu">
-			        <a class="dropdown-item" href="{{ route('users.show',Auth::user()->id)}}">个人中心</a>
-			        <a class="dropdown-item" href="#">编辑资料</a>
+			        <a class="dropdown-item" href="{{ route('users.show',Auth::user()->id) }}">个人中心</a>
+			        <a class="dropdown-item" href="{{ route('users.edit',Auth::user()->id) }}">编辑资料</a>
 			        <hr />
 			        <form action="{{ route('logout') }}" method="post">
 			        	{{ csrf_field() }}

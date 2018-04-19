@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@charset "UTF-8";
 
 /*!
  * Bootstrap v4.1.0 (https://getbootstrap.com/)
@@ -10440,5 +10440,14 @@ a {
 
 .session-msg {
   margin-top: 10px;
+}
+
+.user {
+  margin-top: 30px;
+}
+
+.user-info {
+  font-size: 1.4rem;
+  margin-left: 10px;
 }
 
