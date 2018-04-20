@@ -8,11 +8,15 @@
 		<div class="collapse navbar-collapse justify-content-end" id="nav-team">
 			<ul class="navbar-nav">	
 				@if(Auth::check())
-				<li class="nav-item">
-					<a class="nav-link" href="#">操作</a>
+				<li class="nav-item dropdown" style="padding-top:3px;">
+					<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#">操作</a>
+					<div class="dropdown-menu">
+						<a class="btn btn-success btn-block" role="button" href="{{ route('groups.create') }}">新建分组</a>
+					</div>
 				</li>
 				<li class="nav-item dropdown">
 			      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <img src="{{ Auth::user()->head }}" class="img-responsive rounded-circle" width="30px" height="30px">
 			        {{ Auth::user()->name }}
 			      </a>
 			      <div class="dropdown-menu">
@@ -22,7 +26,7 @@
 			        <form action="{{ route('logout') }}" method="post">
 			        	{{ csrf_field() }}
 			        	{{ method_field('DELETE') }}
-			        	<input type="submit" class="dropdown-item btn btn-danger" value="退出登录" />
+			        	<input type="submit" class="btn btn-danger btn-block" value="退出登录" />
 			    	</form>
 			      </div>
 			    </li>

@@ -14,8 +14,8 @@ class AddHeadToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-            $table->string('head')->nullable();
+            $path=config('app.url').'/'.'uploads/images/head/default.jpg';
+            $table->string('head')->nullable()->default($path);
         });
     }
 

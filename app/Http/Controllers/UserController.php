@@ -33,7 +33,7 @@ class UserController extends Controller
     //提交注册
     public function store(Request $request){
     	$this->validate($request,[
-    		'name' => 'required|min:3|max:10|regex:/^[A-Za-z0-9\-\_]+$/',
+    		'name' => 'required|min:3|max:10|regex:/^[\u4e00-\u9fff\w]+$/',
     		'email' => 'required|email|unique:users|max:50',
     		'password' => 'required|confirmed|min:6|max:20',
     	]);
@@ -82,6 +82,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required|min:3|max:10|regex:/^[A-Za-z0-9\-\_]+$/',
             'password' => 'nullable|confirmed|min:6|max:20',
+            'head' => 'mimes:jpeg,png,gif|dimensions:min_width=200,min_height=200',
         ]);
         $this->authorize('update',$user);
         $data=['name'=>$request->name];
@@ -90,7 +91,7 @@ class UserController extends Controller
             $data['password']=bcrypt($request->password);
         }
         if($request->head){
-            $result=$upload->save($request->head,'head',$user->id);
+            $result=$upload->save($request->head,'head',$user->id,200);
             if($result){
                 $data['head']=$result['path'];
             }

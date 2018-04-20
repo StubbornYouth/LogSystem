@@ -31,10 +31,10 @@
             	<input type="file" name="head" class="form-control">
           	  </div>
           	   @if($user->head)
-                 <br>
-                 <img class="thumbnail img-responsive" src="{{ $user->head }}" width="200" />
+                 <img class="thumbnail img-responsive" src="{{ $user->head }}" width="100" />
+                 <br/>
                @endif
-			  <button type="submit" class="btn btn-primary">保存</button>
+			  <button type="submit" class="btn btn-primary" style="margin-top:10px;">保存</button>
 			</form>
 		</div>
 		<div class="col-md-3"></div>

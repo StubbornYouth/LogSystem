@@ -4,7 +4,7 @@
 	@include('layouts._session')
 	<div class="row user">
 		<div class="col-sm-3 text-center">
-		   		<img class="img-thumbnail" src="{{ $user->head }}" width="200px" height="200px" alt="头像图片" />
+		   		<img class="img-thumbnail" src="{{ $user->head }}" alt="头像图片" />
 		</div>
 		<div class="col-sm-9">
 			<div class="table-responsive">

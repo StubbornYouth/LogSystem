@@ -10451,3 +10451,11 @@ a {
   margin-left: 10px;
 }
 
+.email-group {
+  margin: 50px 0px;
+}
+
+.email-group .border {
+  padding: 20px;
+}
+
