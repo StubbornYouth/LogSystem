@@ -8,6 +8,9 @@ use App\Http\Models\Group;
 
 class GroupController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth',[]);
+    }
     //创建组视图
     public function create(){
     	return view('groups.create');
@@ -20,5 +23,8 @@ class GroupController extends Controller
     	return redirect()->route('users.show',$request->create_id);
     }
 
-    
+    //编辑
+    public function edit(Group $group){
+        return view('groups.edit',compact('group'));
+    }
 }

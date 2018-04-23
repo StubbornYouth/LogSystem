@@ -1,14 +1,14 @@
 <header>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-fixed-top">
 		<div class="container">
-		<a class="nav-brand font-weight-bold logo" href="#">LogSystem</a>
+		<a class="nav-brand font-weight-bold logo" href="{{ route('home') }}">LogSystem</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-team">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse justify-content-end" id="nav-team">
 			<ul class="navbar-nav">	
 				@if(Auth::check())
-				<li class="nav-item dropdown" style="padding-top:3px;">
+				<li class="nav-item dropdown" style="padding:4px 0px;">
 					<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#">操作</a>
 					<div class="dropdown-menu">
 						<a class="btn btn-success btn-block" role="button" href="{{ route('groups.create') }}">新建分组</a>
@@ -40,5 +40,6 @@
 				@endif
 			</ul>
 		</div>
+	</div>
 	</nav>
 </header>
