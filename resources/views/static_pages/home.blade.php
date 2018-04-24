@@ -3,9 +3,10 @@
 @section('content')
 	<div class="row home">
 		<div class="col-sm-12">
+			@include('layouts._session')
 			<div class="clearfix">
 				<h4 class="home-title float-left">邮件组</h4>
-				<button type="button" class="btn btn-success float-right">新的组</button>
+				<a class="btn btn-success float-right" role="button" href="{{ route('groups.create') }}">新的组</a>
 			</div>
 			<hr/>
 			<ul class="nav nav-tabs">
@@ -15,32 +16,42 @@
 			  <li class="nav-item">
 			    <a class="nav-link text-dark" data-toggle="tab" href="#person">你创建的</a>
 			  </li>
-			  </ul>
 			</ul>
 			<div class="tab-content">
 			  <div class="tab-pane active container" id="all"></div>
 			  <div class="tab-pane container table-responsive" id="person">
+			  	@if($perPage['sum']==0)
+			  	<div class="jumbotron">
+				  <h1>你创建的邮件组</h1> 
+				  <p>你当前还没有创建邮件组哦!</p> 
+				</div>
+				@else
 			  	<ul class="list-unstyled">
-			  	@foreach($data as $v)
+			  	@foreach($perPage['data'] as $v)
 			  		<li class="group-info clearfix text-nowrap">
 			  			<img width="40" height="40" class="img-responsive rounded-circle float-left" src="{{ $v->group_head }}" alt="组头像" />
 			  			<span class="font-weight-bold"><a href="#" class="text-dark">{{ $v->name }}</a></span>
-			  			<a class="float-right" href="#">编辑</a>
+			  			<a class="float-right" href="{{ route('groups.edit',$v->id) }}">编辑</a>
 			  			<br>
 			  			<span class="small">{{ $v->commit }}</span>
-			  			<span class="float-right text-dark">创建于{{ $v->updated_at->diffForHumans() }}</span>
+			  			<span class="float-right text-dark">创建于{{ \Carbon\Carbon::parse($v->created_at)->diffForHumans() }}</span>
 			  		</li>
 			  	@endforeach
 			  	</ul>
-			  	<ul class="pagination">
-				  <li class="page-item"><a class="page-link" href="#">上一页</a></li>
-				  <li class="page-item"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item active"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item"><a class="page-link" href="#">下一页</a></li>
-				</ul>
+			  	<ul id="page" class="pagination">
+			  		<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="noFreshPage(1)">首页</a></li>
+  					<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="noFreshPage(<?php echo $perPage['prev']; ?>)">上一页</a></li>
+  					<li class="page-item disabled"><a class="page-link" href="">{{ $perPage['page'] }} | {{ $perPage['sum'] }}</a></li>
+  					<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="noFreshPage(<?php echo $perPage['next']; ?>)">下一页</a></li>
+  					<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="noFreshPage(<?php echo $perPage['sum']; ?>)">尾页</a></li>
+			  	</ul>
+			  	@endif
 			  </div>
 			</div>
 		</div>
 	</div>
+@stop
+@section('script')
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/page.js"></script>
 @stop

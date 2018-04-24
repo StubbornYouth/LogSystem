@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\Group;
+use App\Handlers\PageHandler;
 use Auth;
 
 class Indexcontroller extends Controller
@@ -12,8 +13,14 @@ class Indexcontroller extends Controller
 		$this->middleware('auth',[]);
 	}
     //主页
-    public function home(){
-    	$data=Group::where('create_id',Auth::user()->id)->paginate(10);
-    	return view('static_pages.home',compact('data'));
+    public function home(PageHandler $page){
+    	$perPage=$page->page('email_group',[['create_id',Auth::user()->id]]);
+    	return view('static_pages.home',compact('perPage'));
+    }
+
+    //个人创建替换页
+    public function perPage(PageHandler $page){
+    	$perPage=$page->page('email_group',[['create_id',Auth::user()->id]]);
+    	return view('page.perPage',compact('perPage'));
     }
 }

@@ -8,5 +8,5 @@ class Group extends Model
 {
     protected $table = 'email_group';
 
-    protected $fillable = ['name','commit','create_id','users'];
+    protected $fillable = ['name','commit','create_id','users','group_head'];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\GroupRequest;
+use App\Handlers\ImageUploadHandler;
 use App\Http\Models\Group;
 
 class GroupController extends Controller
@@ -26,5 +27,19 @@ class GroupController extends Controller
     //编辑
     public function edit(Group $group){
         return view('groups.edit',compact('group'));
+    }
+
+    //更新
+    public function update(GroupRequest $request,ImageUploadHandler $upload,Group $group){
+        $data=['name'=>$request->name,'commit'=>$request->commit];
+        if($request->group_head){
+            $result=$upload->save($request->group_head,'group_email',$group->id,200);
+            if($result){
+                $data['group_head']=$result['path'];
+            }
+        }
+        $group->update($data);
+        session()->flash('success','更新组信息成功！');
+        return redirect()->route('home');
     }
 }
