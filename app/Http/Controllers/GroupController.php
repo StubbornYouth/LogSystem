@@ -26,6 +26,7 @@ class GroupController extends Controller
 
     //编辑
     public function edit(Group $group){
+        $this->authorize('update', $group);
         return view('groups.edit',compact('group'));
     }
 
@@ -41,5 +42,9 @@ class GroupController extends Controller
         $group->update($data);
         session()->flash('success','更新组信息成功！');
         return redirect()->route('home');
+    }
+    //展示
+    public function show(Group $group){
+        return view('groups.show',compact('group'));
     }
 }

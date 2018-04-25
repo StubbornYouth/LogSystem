@@ -3,9 +3,10 @@
 namespace App\Policies;
 
 use App\Http\Models\User;
+use App\Http\Models\Group;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class GroupPolicy
 {
     use HandlesAuthorization;
 
@@ -18,9 +19,9 @@ class UserPolicy
     {
         //
     }
-    //用户更新是时的权限验证
-    public function update(User $currentUser,User $user){
-        return $currentUser->id === $user->id;
-    }
 
+    public function update(User $user, Group $group)
+    {
+        return $group->create_id === $user->id;
+    }
 }

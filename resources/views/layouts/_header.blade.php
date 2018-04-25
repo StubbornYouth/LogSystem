@@ -8,7 +8,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="nav-team">
 			<ul class="navbar-nav">	
 				@if(Auth::check())
-				<li class="nav-item dropdown" style="padding:4px 0px;">
+				<li class="nav-item dropdown" style="padding:3px 0px;">
 					<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#">操作</a>
 					<div class="dropdown-menu">
 						<a class="btn btn-success btn-block" role="button" href="{{ route('groups.create') }}">新建分组</a>
