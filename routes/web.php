@@ -23,3 +23,5 @@ Route::post('password/reset','Auth\ResetPasswordController@reset')->name('passwo
 Route::get('/home','IndexController@home')->name('home');
 Route::resource('/groups','GroupController',['only' => ['create','store','edit','update','show']]);
 Route::get('/perPage','IndexController@perPage')->name('perPage');
+Route::get('/groups/{group}/log','LogController@create')->name('logs.create');
+Route::get('/groups/{group}/users','GroupController@showUsers')->name('groups.show_users');

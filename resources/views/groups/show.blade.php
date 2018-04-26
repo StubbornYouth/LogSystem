@@ -1,34 +1,30 @@
 @extends('layouts.default')
-@section('title','')
+@section('title','组详情')
 @section('content')
-<div class="row">
-	<div class="col-sm-12">
-	  <ul class="nav nav-tabs group-nav">
-	  <li class="nav-item">
-	    <a class="nav-link active" data-toggle="tab" href="#home">写日志</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#menu1">组员</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#menu2">设置</a>
-	  </li>
-	</ul>
-	 
-	<div class="tab-content">
-	  <div class="tab-pane active container" id="home">
-	  	<h3 class="text-center text-dark"><span class="glyphicon glyphicon-edit"></span> 新日志</h3>
-	  	<form action="" method="post">
-			  {{ csrf_field() }}
-			  <div class="form-group">
-			    <textarea class="form-control" rows="5" name="commit" placeholder="填写今日工作内容 eg:开发功能 完成度等" >{{ old('commit') }}</textarea>
-			  </div>
-			  <button type="submit" class="btn btn-primary">注册</button>
-		</form>
-	  </div>
-	  <div class="tab-pane container" id="menu1">...</div>
-	  <div class="tab-pane container" id="menu2">...</div>
-	</div>
-		</div>	
+	<div class="row">
+		<div class="col-sm-12">
+			<ul class="nav nav-tabs nav-justified text-nowrap group-tab">
+			    <li class="nav-item">
+			      <a class="nav-link active" href="{{ route('groups.show',$group->id) }}">组</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ route('logs.create',$group->id) }}">写日志</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ route('groups.show_users',$group->id) }}">会员</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ route('groups.edit',$group->id) }}">设置</a>
+			    </li>
+			</ul>
+			<div class="group-tab-page text-center border-bottom">
+    			<img class="img-responsive rounded-circle" src="{{ $group->group_head }}" alt="组头像" style="width:100px;" />
+	    		<div class="card-body">
+	      			<h4 class="card-title">{{ $group->name }}</h4>
+	      			<p class="card-text"></p>
+	      			<a href="#" class="btn btn-light border">离开组</a>
+	   			</div>
+  			</div>
+		</div>
 	</div>
 @stop

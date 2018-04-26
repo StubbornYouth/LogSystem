@@ -32,12 +32,16 @@
 			  			<img width="40" height="40" class="img-responsive rounded-circle float-left" src="{{ $v->group_head }}" alt="组头像" />
 			  			<span class="font-weight-bold"><a href="{{ route('groups.show',$v->id) }}" class="text-dark">{{ $v->name }}</a></span>
 			  			<span class="float-right">
-			  			<a href="#" title="组人数" >
+			  			<a href="{{ route('groups.show_users',$v->id) }}" title="组人数" >
           					<span class="glyphicon glyphicon-user"></span>
        					</a>{{ $v->peo_number }}&nbsp;
-			  			<a href="{{ route('groups.edit',$v->id) }}" title="编辑组">
+       					<a href="{{ route('logs.create',$v->id) }}" title="写日志">
 			  				<span class="glyphicon glyphicon-edit"></span>
 			  			</a>
+			  			<a href="{{ route('groups.edit',$v->id) }}" title="设置">
+			  				<span class="glyphicon glyphicon-cog"></span>
+			  			</a>
+			  			
 			  			</span>
 			  			<br>
 			  			<span class="small">{{ $v->commit }}</span>

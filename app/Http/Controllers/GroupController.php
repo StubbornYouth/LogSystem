@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\GroupRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Models\Group;
+use App\Http\Models\User;
 
 class GroupController extends Controller
 {
@@ -46,5 +47,11 @@ class GroupController extends Controller
     //展示
     public function show(Group $group){
         return view('groups.show',compact('group'));
+    } 
+    //组用户列表显示
+    public function showUsers(Group $group){
+        $users=explode(',',$group->users);
+        $users=User::whereIn('id',$users)->get();
+        return view('groups.show_users',compact('group','users'));
     }
 }
