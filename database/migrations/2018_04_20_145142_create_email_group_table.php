@@ -17,7 +17,6 @@ class CreateEmailGroupTable extends Migration
             $table->increments('id');
             $table->string('name',20);
             $table->Integer('create_id')->unsigned();
-            $table->string('users');
             $table->string('commit',50)->nullable();
             $table->timestamps();
         });

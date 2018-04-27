@@ -10,6 +10,10 @@
 			<form action="{{ route('users.store') }}" method="post">
 			  {{ csrf_field() }}
 			  <div class="form-group">
+			    <label for="real_name">姓名:</label>
+			    <input type="text" class="form-control" name="real_name" value="{{ old('real_name') }}">
+			  </div>
+			  <div class="form-group">
 			    <label for="name">名称:</label>
 			    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
 			  </div>

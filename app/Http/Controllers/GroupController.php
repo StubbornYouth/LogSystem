@@ -50,8 +50,26 @@ class GroupController extends Controller
     } 
     //组用户列表显示
     public function showUsers(Group $group){
-        $users=explode(',',$group->users);
-        $users=User::whereIn('id',$users)->get();
+        $users=$group->users();
+        dd(compact($users));
         return view('groups.show_users',compact('group','users'));
     }
+
+    //添加成员
+    public function addUser(Request $request,Group $group){
+        //检索成员
+        if(empty($request->name)){
+            session()->flash('danger','用户名不能为空');
+            return redirect()->back();
+        }
+        $user=User::where('name',$request->name)->first();
+        if(!$user){
+            session()->flash('danger','很抱歉,未找到该用户');
+            return redirect()->back();
+        }
+        $group->users()->sync([$user->id],false);
+        session()->flash('success','用户已成功添加');
+        return redirect()->back();
+    }
+
 }

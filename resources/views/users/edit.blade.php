@@ -11,6 +11,10 @@
 			  {{ method_field('PATCH') }}
 			  {{ csrf_field() }}
 			  <div class="form-group">
+			    <label for="name">姓名：</label>
+			    <input type="text" class="form-control" name="real_name" value="{{ old('real_name',$user->real_name) }}">
+			  </div>
+			  <div class="form-group">
 			    <label for="name">用户名：</label>
 			    <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }}">
 			  </div>

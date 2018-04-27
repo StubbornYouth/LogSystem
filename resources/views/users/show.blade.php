@@ -10,6 +10,10 @@
 			<div class="table-responsive">
 				<h2 class="text-center">个人资料</h2>
 				<table class="table table-hover table-bordered text-nowrap">
+					  <tr>
+				        <td>姓名：</td>
+				        <td>{{ $user->real_name }}</td>
+				      </tr>
 				      <tr>
 				        <td>用户名：</td>
 				        <td>{{ $user->name }}</td>

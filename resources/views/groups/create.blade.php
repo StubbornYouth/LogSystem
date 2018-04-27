@@ -3,14 +3,13 @@
 @section('content')
 <div class="row email-group">
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8 border ">
+	<div class="col-sm-8 border " style="padding:10px;">
 		<h3 class="text-center">新建邮件组</h3>
 		<hr/>
 		@include('layouts._error')
 			<form action="{{ route('groups.store') }}" method="post">
 			  {{ csrf_field() }}
 			  <input type="hidden" name="create_id" value="{{Auth::user()->id}}" />
-			  <input type="hidden" name="users" value="{{Auth::user()->id}}" />
 			  <div class="form-group">
 			    <input type="text" class="form-control" name="name" placeholder="请填写组名" value="{{ old('name') }}">
 			  </div>

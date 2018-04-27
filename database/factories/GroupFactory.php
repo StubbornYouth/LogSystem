@@ -7,7 +7,6 @@ $factory->define(App\Http\Models\Group::class, function (Faker $faker) {
     return [
         'name' => str_random(10),
         'create_id' => 1,
-        'users' => '1',
         'created_at' => $date_time,
         'updated_at' => $date_time,
     ];

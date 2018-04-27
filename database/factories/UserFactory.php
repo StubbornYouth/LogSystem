@@ -17,6 +17,7 @@ $factory->define(App\Http\Models\User::class, function (Faker $faker) {
 	static $password;
 	$date_time = $faker->date.' '.$faker->time;
     return [
+        'real_name' => str_random(3),
         'name' => str_random(10),
         'email' => $faker->unique()->safeEmail,
         'password' => $password?:$password = bcrypt('secret'), // secret

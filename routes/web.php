@@ -25,3 +25,4 @@ Route::resource('/groups','GroupController',['only' => ['create','store','edit',
 Route::get('/perPage','IndexController@perPage')->name('perPage');
 Route::get('/groups/{group}/log','LogController@create')->name('logs.create');
 Route::get('/groups/{group}/users','GroupController@showUsers')->name('groups.show_users');
+Route::get('/addUser/{group}','GroupController@addUser')->name('addUser');

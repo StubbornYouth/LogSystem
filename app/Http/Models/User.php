@@ -5,6 +5,7 @@ namespace App\Http\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassword;
+Use App\Http\Models\Group;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable
     protected $table='users';
     
     protected $fillable = [
-        'name', 'email', 'password','head'
+        'real_name','name', 'email', 'password','head'
     ];
 
     /**
@@ -38,8 +39,12 @@ class User extends Authenticatable
             $user->activation_token=str_random(30);
         });
     }
-
+    //重置密码
     public function sendPasswordResetNotification($token){
         $this->notify(new ResetPassword($token));
+    }
+
+     public function users(){
+        return $this->belongsToMany(Group::class,'members','user_id','group_id');
     }
 }

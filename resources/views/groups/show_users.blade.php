@@ -17,11 +17,12 @@
 			      <a class="nav-link" href="{{ route('groups.edit',$group->id) }}">设置</a>
 			    </li>
 			</ul>
-			<form>
-			  <div class="form-group clearfix" style="margin-top:20px;">
-			    <label for="addUser">添加新成员到组<sapn class="font-weight-bold">{{ $group->name }}</sapn></label><br/>
-			    <input type="text" class="form-control-self float-left" name="addUser" value="{{ old('addUser') }}">
-			    <input type="button" class="btn btn-success float-right" value="添加到组" />
+			@include('layouts._session')
+			<form action="{{ route('addUser',$group->id) }}" method="get">
+			  <div class="form-group" style="margin-top:20px;">
+			    <label for="name">添加新成员到组<sapn class="font-weight-bold">{{ $group->name }}</sapn></label><br/>
+			    <input type="text" class="form-control-self" name="name" value="{{ old('name') }}">
+			    <input type="submit" id="submit" class="btn btn-success" value="添加到组" />
 			  </div>
 			</form>
 			<div class="group-tab-page">

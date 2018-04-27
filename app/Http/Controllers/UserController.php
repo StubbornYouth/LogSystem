@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\User;
+use App\Http\Models\Group;
 use App\Handlers\ImageUploadHandler;
 use Auth;
 use Mail;
@@ -11,6 +12,7 @@ use Mail;
 class UserController extends Controller
 {
     public function __construct(){
+        //登录与未登录权限
         $this->middleware('auth',[
             'except' => ['create','store','confirmEmail'],
         ]);
@@ -33,12 +35,14 @@ class UserController extends Controller
     //提交注册
     public function store(Request $request){
     	$this->validate($request,[
-    		'name' => 'required|min:3|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
+            'real_name' => 'required|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
+    		'name' => 'required|min:3|max:20|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
     		'email' => 'required|email|unique:users|max:50',
     		'password' => 'required|confirmed|min:6|max:20',
     	]);
 
     	$user=User::create([
+            'real_name' => $request->real_name,
     		'name' => $request->name,
     		'email' => $request->email,
     		'password' => bcrypt($request->password)
@@ -80,12 +84,13 @@ class UserController extends Controller
     //提交修改
     public function update(Request $request,ImageUploadHandler $upload,User $user){
         $this->validate($request,[
+            'real_name' => 'required|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
             'name' => 'required|min:3|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
             'password' => 'nullable|confirmed|min:6|max:20',
             'head' => 'mimes:jpeg,png,gif|dimensions:min_width=200,min_height=200',
         ]);
         $this->authorize('update',$user);
-        $data=['name'=>$request->name];
+        $data=['real_name'=>$request->real_name,'name'=>$request->name];
         if(!empty($request->password))
         {
             $data['password']=bcrypt($request->password);
