@@ -28,7 +28,6 @@ class UserController extends Controller
 
     //个人信息页面
     public function show(User $user){
-        $this->authorize('update',$user);
     	return view('users.show',compact('user'));
     }
 

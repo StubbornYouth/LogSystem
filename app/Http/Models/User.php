@@ -44,7 +44,7 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
-     public function users(){
-        return $this->belongsToMany(Group::class,'members','user_id','group_id');
+     public function groups(){
+        return $this->belongsToMany(Group::Class,'members','user_id','group_id');
     }
 }

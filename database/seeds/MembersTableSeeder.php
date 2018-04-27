@@ -18,6 +18,6 @@ class MembersTableSeeder extends Seeder
         //获取所有用户id
         $users=User::all()->pluck('id')->toArray();
 
-        $group->users()->sync($users,false);
+        $group->getUsers()->sync($users,false);
     }
 }

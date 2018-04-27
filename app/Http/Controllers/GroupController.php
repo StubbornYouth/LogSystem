@@ -50,8 +50,8 @@ class GroupController extends Controller
     } 
     //组用户列表显示
     public function showUsers(Group $group){
-        $users=$group->users();
-        dd(compact($users));
+        $users=$group->getUsers()->paginate(10);
+        dd($users);
         return view('groups.show_users',compact('group','users'));
     }
 
