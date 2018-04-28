@@ -43,8 +43,12 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token){
         $this->notify(new ResetPassword($token));
     }
-
-     public function groups(){
+    //
+    public function groups(){
         return $this->belongsToMany(Group::Class,'members','user_id','group_id');
+    }
+    //获取加入组的时间
+    public function getRelations(){
+        return $this->relations['pivot']->attributes['created_at'];
     }
 }

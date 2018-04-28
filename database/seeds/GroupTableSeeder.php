@@ -14,5 +14,9 @@ class GroupTableSeeder extends Seeder
     {
         $group = factory(Group::class)->times(50)->make();
         Group::insert($group->toArray());
+        $groups=Group::all();
+        foreach($groups as $v){
+             $v->getUsers()->sync($v->create_id, false);
+        }
     }
 }

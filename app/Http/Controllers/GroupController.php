@@ -20,7 +20,9 @@ class GroupController extends Controller
 
     //提交保存
     public function store(GroupRequest $request){
-    	Group::create($request->all());
+    	$group=Group::create($request->all());
+        //更新用户与组的中间表
+        $group->getUsers()->sync($request->create_id, false);
     	session()->flash('success','恭喜你！邮件组创建成功！');
     	return redirect()->route('users.show',$request->create_id);
     }
@@ -33,6 +35,7 @@ class GroupController extends Controller
 
     //更新
     public function update(GroupRequest $request,ImageUploadHandler $upload,Group $group){
+        $this->authorize('update', $group);
         $data=['name'=>$request->name,'commit'=>$request->commit];
         if($request->group_head){
             $result=$upload->save($request->group_head,'group_email',$group->id,200);
@@ -51,7 +54,6 @@ class GroupController extends Controller
     //组用户列表显示
     public function showUsers(Group $group){
         $users=$group->getUsers()->paginate(10);
-        dd($users);
         return view('groups.show_users',compact('group','users'));
     }
 
@@ -67,9 +69,15 @@ class GroupController extends Controller
             session()->flash('danger','很抱歉,未找到该用户');
             return redirect()->back();
         }
-        $group->users()->sync([$user->id],false);
+        $group->getUsers()->sync([$user->id],false);
         session()->flash('success','用户已成功添加');
         return redirect()->back();
     }
 
+    //删除成员
+    public function delUser(Group $group,User $user){
+        $group->getUsers()->detach($user->id);
+        session()->flash('success','成功将用户'.$user->name.'移出组!');
+        return redirect()->route('groups.show_users',$group->id);
+    }
 }

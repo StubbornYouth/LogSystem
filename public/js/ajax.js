@@ -12,3 +12,18 @@ function noFreshPage(page){
     }  
   })  
 }
+
+function allPage(page){
+  $.ajax({  
+    type:"get",  
+    url:"allPage",  
+    data:{  
+      page:page  
+    },  
+    success:function(msg){  
+     if(msg){  
+        $("#all").html(msg);  
+      }  
+    }  
+  })  
+}

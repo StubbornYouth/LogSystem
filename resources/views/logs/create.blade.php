@@ -13,9 +13,11 @@
 			    <li class="nav-item">
 			      <a class="nav-link" href="{{ route('groups.show_users',$group->id) }}">会员</a>
 			    </li>
+			     @can('update',$group)
 			    <li class="nav-item">
 			      <a class="nav-link" href="{{ route('groups.edit',$group->id) }}">设置</a>
 			    </li>
+			    @endcan
 			</ul>
 			<div class="group-tab-page">
 				<h3 class="text-center"><span class="glyphicon glyphicon-check"></span>写日志</h3>

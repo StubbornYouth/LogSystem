@@ -24,4 +24,14 @@ class GroupPolicy
     {
         return $group->create_id === $user->id;
     }
+
+    public function destroy(User $currentUser, Group $group,User $user){
+        return $group->create_id === $currentUser->id && $currentUser->id !== $user->id;
+    }
+
+    public function show(User $currentUser,Group $group){
+        //获取组内所有用户id
+        $users=$group->getUsers()->allRelatedIds()->toArray();
+        return in_array($currentUser->id,$users);
+    }
 }
