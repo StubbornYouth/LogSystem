@@ -7,7 +7,7 @@ use App\Http\Models\Group;
 use App\Handlers\PageHandler;
 use Auth;
 
-class Indexcontroller extends Controller
+class IndexController extends Controller
 {
 	public function __construct(){
 		$this->middleware('auth',[]);

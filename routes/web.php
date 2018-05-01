@@ -28,3 +28,4 @@ Route::get('/groups/{group}/log','LogController@create')->name('logs.create');
 Route::get('/groups/{group}/users','GroupController@showUsers')->name('groups.show_users');
 Route::post('/addUser/{group}','GroupController@addUser')->name('addUser');
 Route::delete('/delUser/{group}/{user}', 'GroupController@delUser')->name('delUser');
+Route::delete('/groups/leave/{group}', 'GroupController@leaveGroup')->name('leaveGroup');

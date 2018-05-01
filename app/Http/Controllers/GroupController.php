@@ -7,6 +7,7 @@ use App\Http\Requests\GroupRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Models\Group;
 use App\Http\Models\User;
+use Auth;
 
 class GroupController extends Controller
 {
@@ -49,10 +50,12 @@ class GroupController extends Controller
     }
     //展示
     public function show(Group $group){
+        $this->authorize('show', $group);
         return view('groups.show',compact('group'));
     } 
     //组用户列表显示
     public function showUsers(Group $group){
+        $this->authorize('show', $group);
         $users=$group->getUsers()->paginate(10);
         return view('groups.show_users',compact('group','users'));
     }
@@ -79,5 +82,17 @@ class GroupController extends Controller
         $group->getUsers()->detach($user->id);
         session()->flash('success','成功将用户'.$user->name.'移出组!');
         return redirect()->route('groups.show_users',$group->id);
+    }
+
+    //离开组
+    public function leaveGroup(Group $group){
+        Auth::user()->groups()->detach($group->id);
+        session()->flash('success','成功退出组'.$group->name);
+        return redirect()->route('home');
+    }
+
+    //删除组
+    public function delete(Group $group){
+
     }
 }

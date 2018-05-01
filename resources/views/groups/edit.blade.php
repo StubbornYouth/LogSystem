@@ -46,8 +46,30 @@
 			<div class="card border-danger" style="margin-top:20px;">
 			  <div class="card-header bg-danger text-light">删除组</div>
 			  <div class="card-body">删除组将导致所有组内资源被删除<br/><span class="font-weight-bold">删除的组将无法恢复!</span></div> 
-			  <div class="card-footer"><a href="" class="btn btn-danger" role="button">删除组</a></div>
+			  <div class="card-footer">
+			  	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteGroup">
+  				删除组
+			  </button>
 			</div>
+			  <div class="modal fade" id="deleteGroup">
+  			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title">删除组</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			      </div>
+			      <div class="modal-body text-danger">
+			        你确定要移除该组吗?移除之后将无法恢复！！
+			      </div>
+			      <div class="modal-footer">
+			        <form action="route('groups.delete',$group->id)" method="post">
+			        	<input type="submit" value="确定" class="btn btn-primary" />
+			        </form>
+			      </div>
+			    </div>
+  			</div>
+			</div>
+		</div>
 	</div>
 </div>
 @stop

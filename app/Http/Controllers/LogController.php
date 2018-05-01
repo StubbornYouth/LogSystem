@@ -9,6 +9,7 @@ class LogController extends Controller
 {
     //
     public function create(Group $group){
+    	$this->authorize('show', $group);
     	return view('logs.create',compact('group'));
     }
 }

@@ -25,8 +25,30 @@
 	      			<h4 class="card-title">{{ $group->name }}</h4>
 	      			<p class="card-text"></p>
 	      			@cannot('update',$group)
-	      			<a href="#" class="btn btn-light border">离开组</a>
-	      			@endcannot
+	      			<button type="button" class="btn btn-light" data-toggle="modal" data-target="#leaveGroup">
+  						离开组
+			  		</button>
+			  		@endcannot
+			  		<div class="modal fade" id="leaveGroup">
+		  			  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title">离开组</h4>
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					      </div>
+					      <div class="modal-body text-danger text-left">
+					        你确定要离开该{{ $group->name }}吗?
+					      </div>
+					      <div class="modal-footer">
+					        <form action="{{ route('leaveGroup',$group->id) }}" method="post">
+	      						{{ method_field('DELETE') }}
+			  					{{ csrf_field() }}
+	      						<input type="submit" class="btn btn-primary border" value="离开组" />
+	      					</form>
+					      </div>
+					    </div>
+		  			</div>
+					</div>
 	   			</div>
   			</div>
 		</div>
