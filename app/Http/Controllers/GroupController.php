@@ -93,6 +93,6 @@ class GroupController extends Controller
 
     //删除组
     public function delete(Group $group){
-
+        
     }
 }
