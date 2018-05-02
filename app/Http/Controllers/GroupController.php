@@ -95,4 +95,9 @@ class GroupController extends Controller
     public function delete(Group $group){
         
     }
+
+    //发送日志邮件
+    public function sendLogEmail(){
+        Group::all();
+    }
 }

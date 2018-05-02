@@ -25,6 +25,7 @@ Route::resource('/groups','GroupController',['only' => ['create','store','edit',
 Route::get('/perPage','IndexController@perPage')->name('perPage');
 Route::get('/allPage','IndexController@allPage')->name('allPage');
 Route::get('/groups/{group}/log','LogController@create')->name('logs.create');
+Route::post('logs/store/{group}','LogController@store')->name('logs.store');
 Route::get('/groups/{group}/users','GroupController@showUsers')->name('groups.show_users');
 Route::post('/addUser/{group}','GroupController@addUser')->name('addUser');
 Route::delete('/delUser/{group}/{user}', 'GroupController@delUser')->name('delUser');

@@ -23,7 +23,7 @@
 				<h3 class="text-center"><span class="glyphicon glyphicon-check"></span>写日志</h3>
 				<hr/>
 				@include('layouts._error')
-				<form action="" method="post">
+				<form action="{{ route('logs.store',$group->id) }}" method="post">
 				  {{ csrf_field() }}
 				  <div class="form-group">
 				    <input type="text" class="form-control" name="title" placeholder="日志标题,可以不填哦!" value="{{ old('title') }}">
