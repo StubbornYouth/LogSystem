@@ -56,7 +56,7 @@ class GroupController extends Controller
     //组用户列表显示
     public function showUsers(Group $group){
         $this->authorize('show', $group);
-        $users=$group->getUsers()->paginate(10);
+        $users=$group->getUsers()->paginate(15);
         return view('groups.show_users',compact('group','users'));
     }
 

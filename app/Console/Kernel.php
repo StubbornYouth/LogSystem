@@ -13,8 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //注册邮件发送命令
-        Commands\SendLogEmail::class,
+        Commands\SendLog::class,
     ];
 
     /**
@@ -27,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        //$schedule->command('logs:send-log-email')->everyMinute();
+        $schedule->command('logs:send-log-email')->dailyAt('18:30');
     }
 
     /**

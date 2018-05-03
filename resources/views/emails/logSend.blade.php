@@ -2,17 +2,17 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>happy new year</title>
+  <title>组日志</title>
 </head>
 <body>
-  <h1>感谢您在本网站进行访问！</h1>
-
-  <p>
-    如果你喜欢我们，那就来哦！今天的天气很不错！！！
-  </p>
-
-  <p>
-    如果这不是您本人的操作，请忽略此邮件。
-  </p>
+  <h1 class="text-info">这是今日{{$group_name}}组的日志汇总</h1>
+  @foreach($data as $v)
+  <div>
+  	<h3>标题:{{ $v['title'] }} 组员:{{ $v['name'] }}</h3>
+  	<h3>内容:</h3>
+  	<p>{{ $v['content'] }}</p>
+  	<hr/>
+  </div>
+  @endforeach
 </body>
 </html>
