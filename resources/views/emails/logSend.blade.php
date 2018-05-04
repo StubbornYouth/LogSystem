@@ -10,7 +10,7 @@
   <div>
   	<h3>标题:{{ $v['title'] }} 组员:{{ $v['name'] }}</h3>
   	<h3>内容:</h3>
-  	<p>{{ $v['content'] }}</p>
+  	<div>{!! $v['content'] !!}</div>
   	<hr/>
   </div>
   @endforeach

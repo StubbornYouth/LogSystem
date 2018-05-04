@@ -7,6 +7,7 @@ use App\Http\Requests\GroupRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Models\Group;
 use App\Http\Models\User;
+use App\Http\Models\Log;
 use Auth;
 
 class GroupController extends Controller
@@ -51,12 +52,13 @@ class GroupController extends Controller
     //展示
     public function show(Group $group){
         $this->authorize('show', $group);
-        return view('groups.show',compact('group'));
+        $logs=$this->showLogs($group);
+        return view('groups.show',compact('group','logs'));
     } 
     //组用户列表显示
     public function showUsers(Group $group){
         $this->authorize('show', $group);
-        $users=$group->getUsers()->paginate(15);
+        $users=$group->getUsers()->paginate(10);
         return view('groups.show_users',compact('group','users'));
     }
 
@@ -96,8 +98,9 @@ class GroupController extends Controller
         
     }
 
-    //发送日志邮件
-    public function sendLogEmail(){
-        Group::all();
+    //获取用户组日志信息
+    protected function showLogs(Group $group){
+        $logs=Log::where(['group_id'=>$group->id,'user_id'=>Auth::user()->id])->orderBy('updated_at','desc')->paginate(10);
+        return $logs;
     }
 }

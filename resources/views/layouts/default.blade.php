@@ -3,6 +3,7 @@
   <head>
     <title>@yield('title', '首页') - 日志管理平台</title>
     <link rel="stylesheet" href="/css/app.css">
+    @yield('style')
   </head>
   <body>
     @include('layouts._header')

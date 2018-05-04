@@ -18,6 +18,8 @@ class AuthServiceProvider extends ServiceProvider
         \App\Http\Models\User::class => \App\Policies\UserPolicy::class,
         //为Group模型指定授权策略
         \App\Http\Models\Group::class  => \App\Policies\GroupPolicy::class,
+        //为log模型指定授权策略
+        \App\Http\Models\Log::class  => \App\Policies\LogPolicy::class,
     ];
 
     /**

@@ -61,9 +61,6 @@
 						    </div>
 			  			</div>
 						</div>
-						
-						
-						
 						<a class="text-dark font-weight-bold" href="{{ route('users.show',$user->id) }}">{{ $user->real_name }}</a>
 						<span class="input-group-addon">@</span>
 						<span class="text-dark">{{ $user->name }}</span>

@@ -47,7 +47,7 @@ class SendLog extends Command
             $to=[];
             $data=[];
             //邮件信息
-            $logs=Log::select('user_id','title','content')->where('id',$group->id)->whereDate('updated_at',date('Y-m-d'))->get();
+            $logs=Log::select('user_id','title','content')->where('group_id',$group->id)->whereDate('created_at',date('Y-m-d'))->get();
             if(count($logs)>0){
                 foreach($logs as $log){
                     $name=User::where('id',$log->user_id)->value('real_name');
