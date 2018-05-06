@@ -34,22 +34,22 @@
 				<h5 class="font-weight-bold">现有成员</h5>
 				<hr/>
 				<ul class="list-unstyled">
-					@foreach($users as $user)
+					@foreach($users as $k=>$user)
 					<li class="group-info clearfix">
 						<img class="img-responsive rounded-circle float-left" src="{{ $user->head }}" style="width:40px;margin-right:5px;" alt="头像" />@can('destroy',[$group,$user])
-						<button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#deleteUser">
+						<button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#deleteUser{{$k}}">
   							踢出组
 			 			</button> 
 			 			@endcan
-			 			 <div class="modal fade" id="deleteUser">
+			 			 <div class="modal fade" id="deleteUser{{$k}}">
 			  			  <div class="modal-dialog">
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <h4 class="modal-title">踢出组</h4>
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
 						      </div>
-						      <div class="modal-body text-danger">
-						        你确定要将{{$user->name}}移出该组吗?
+						      <div class="modal-body">
+						        你确定要将<span class="text-danger">{{$user->name}}</span>移出该组吗?
 						      </div>
 						      <div class="modal-footer">
 						       <form action="{{ route('delUser',[$group->id,$user->id]) }}" method="post">

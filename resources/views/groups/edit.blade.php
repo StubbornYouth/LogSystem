@@ -62,7 +62,9 @@
 			        你确定要移除该组吗?移除之后将无法恢复！！
 			      </div>
 			      <div class="modal-footer">
-			        <form action="route('groups.delete',$group->id)" method="post">
+			        <form action="{{route('groups.destroy',$group->id)}}" method="post">
+			        	{{method_field('DELETE')}}
+			      		{{csrf_field()}}
 			        	<input type="submit" value="确定" class="btn btn-primary" />
 			        </form>
 			      </div>

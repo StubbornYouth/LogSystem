@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('logs:send-log-email')->dailyAt('18:30');
+        $schedule->command('logs:send-week-email')->weekly()->sundays()->at('18:30');
     }
 
     /**

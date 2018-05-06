@@ -56,6 +56,7 @@
 	   				@include('layouts._session')
 	   				<h5 class="font-weight-bold">你的日志</h5>
 	   				<hr/>
+	   				@if(count($logs)>0)
 	   				<ul class="list-unstyled">
 	   					@foreach($logs as $k=>$log)
 	   						<li class="border-bottom clearfix" style="margin-bottom:10px;padding:0px 10px;">
@@ -128,6 +129,13 @@
 	   						</li>
 	   					@endforeach
 	   				</ul>
+	   				@else
+	   				<div class="jumbotron" style="margin-top:20px;">
+					  <h1>你的组日志</h1> 
+					  <p>你在当前组中还没有日志哦!</p>
+					  <a href="{{ route('logs.create',$group->id)}}" class="btn btn-success" role="button">新建日志</a> 
+					</div>
+					@endif
 	   				{!! $logs->render('vendor.pagination.bootstrap-4') !!}
 	   			</div>
   			</div>

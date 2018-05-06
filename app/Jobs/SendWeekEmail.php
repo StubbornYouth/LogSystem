@@ -8,8 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Mail;
-
-class SendLogEmail implements ShouldQueue
+class SendWeekEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -36,7 +35,7 @@ class SendLogEmail implements ShouldQueue
     public function handle()
     {
         //发送内容视图
-        $view="emails.logSend";
+        $view="emails.logWeekSend";
         //获取组中成员id
         //获得组中所有成员日志信息
 
@@ -44,7 +43,7 @@ class SendLogEmail implements ShouldQueue
         $data=$this->data;
         //接收者的邮箱
         $to=$this->emails;
-        $subject='组'.$this->group_name."的每日日志汇总邮件";
+        $subject='组'.$this->group_name."的每周日志汇总邮件";
         $status = Mail::send($view,['data'=>$data,'group_name'=>$this->group_name],function($msg) use ($to,$subject){
            foreach($to as $t){
                 $msg->to($t['email'], $t['name'])->subject($subject);

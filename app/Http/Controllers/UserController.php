@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Models\User;
 use App\Http\Models\Group;
 use App\Handlers\ImageUploadHandler;
+use App\Http\Requests\UserRequest;
 use Auth;
 use Mail;
 
@@ -32,14 +33,7 @@ class UserController extends Controller
     }
 
     //提交注册
-    public function store(Request $request){
-    	$this->validate($request,[
-            'real_name' => 'required|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
-    		'name' => 'required|min:3|max:20|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
-    		'email' => 'required|email|unique:users|max:50',
-    		'password' => 'required|confirmed|min:6|max:20',
-    	]);
-
+    public function store(UserRequest $request){
     	$user=User::create([
             'real_name' => $request->real_name,
     		'name' => $request->name,

@@ -28,6 +28,7 @@ Route::get('/groups/{group}/users','GroupController@showUsers')->name('groups.sh
 Route::post('/addUser/{group}','GroupController@addUser')->name('addUser');
 Route::delete('/delUser/{group}/{user}', 'GroupController@delUser')->name('delUser');
 Route::delete('/groups/leave/{group}', 'GroupController@leaveGroup')->name('leaveGroup');
+Route::delete('/groups/delete/{group}','GroupController@destroy')->name('groups.destroy');
 Route::get('/groups/{group}/log','LogController@create')->name('logs.create');
 Route::post('logs/store/{group}','LogController@store')->name('logs.store');
 Route::post('/upload_img','LogController@uploadImg')->name('logs.upload_img');

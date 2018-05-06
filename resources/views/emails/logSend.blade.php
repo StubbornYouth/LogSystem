@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>组日志</title>
+  <title>组每日日志</title>
 </head>
 <body>
-  <h1 class="text-info">这是今日{{$group_name}}组的日志汇总</h1>
+  <h1 class="text-info">{{date('Y-m-d')}}&nbsp;<span style="color:#f00;">{{$group_name}}</span>&nbsp;每日日志汇总</h1>
   @foreach($data as $v)
   <div>
   	<h3>标题:{{ $v['title'] }} 组员:{{ $v['name'] }}</h3>

@@ -81,21 +81,31 @@ class GroupController extends Controller
 
     //删除成员
     public function delUser(Group $group,User $user){
+        $this->authorize('update', $group);
         $group->getUsers()->detach($user->id);
+        Log::where(['group_id'=>$group->id,'user_id'=>$user->id])->delete();
         session()->flash('success','成功将用户'.$user->name.'移出组!');
         return redirect()->route('groups.show_users',$group->id);
     }
 
     //离开组
     public function leaveGroup(Group $group){
+        $this->authorize('show', $group);
         Auth::user()->groups()->detach($group->id);
         session()->flash('success','成功退出组'.$group->name);
         return redirect()->route('home');
     }
 
     //删除组
-    public function delete(Group $group){
-        
+    public function destroy(Group $group){
+        $this->authorize('update', $group);
+        $name=$group->name;
+        $users=$group->getUsers()->allRelatedIds()->toArray();
+        $group->getUsers()->detach($users);
+        Log::where('group_id',$group->id)->delete();
+        Group::where('id',$group->id)->delete();  
+        session()->flash('success','成功删除组'.$name);
+        return redirect()->route('home');
     }
 
     //获取用户组日志信息
