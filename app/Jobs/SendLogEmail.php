@@ -49,7 +49,6 @@ class SendLogEmail implements ShouldQueue
            foreach($to as $t){
                 $msg->to($t['email'], $t['name'])->subject($subject);
             }
-            
         });
     }
 }
