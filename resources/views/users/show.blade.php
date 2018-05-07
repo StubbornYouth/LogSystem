@@ -19,10 +19,6 @@
 				        <td>{{ $user->name }}</td>
 				      </tr>
 				      <tr>
-				        <td>邮箱：</td>
-				        <td>{{ $user->email }}</td>
-				      </tr>
-				      <tr>
 				        <td>注册时间：</td>
 				        <td>{{ $user->created_at->diffForHumans() }}</td>
 				      </tr>
