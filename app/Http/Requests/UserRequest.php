@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'real_name' => 'required|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
-            'name' => 'required|min:3|max:20|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
+            'name' => 'required|min:3|max:20|unique:users|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
             'email' => 'required|email|unique:users|max:50',
             'password' => 'required|confirmed|min:6|max:20',
         ];
