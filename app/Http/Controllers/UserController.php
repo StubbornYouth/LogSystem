@@ -7,6 +7,7 @@ use App\Http\Models\User;
 use App\Http\Models\Group;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Auth;
 use Mail;
 
@@ -75,13 +76,7 @@ class UserController extends Controller
     }
 
     //提交修改
-    public function update(Request $request,ImageUploadHandler $upload,User $user){
-        $this->validate($request,[
-            'real_name' => 'required|max:10|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
-            'name' => 'required|min:3|max:10|unique:users|regex:/^[\x{4e00}-\x{9fa5}\w]+$/u',
-            'password' => 'nullable|confirmed|min:6|max:20',
-            'head' => 'mimes:jpeg,png,gif|dimensions:min_width=200,min_height=200',
-        ]);
+    public function update(UserUpdateRequest $request,ImageUploadHandler $upload,User $user){
         $this->authorize('update',$user);
         $data=['real_name'=>$request->real_name,'name'=>$request->name];
         if(!empty($request->password))
