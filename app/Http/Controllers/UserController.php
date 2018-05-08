@@ -78,7 +78,7 @@ class UserController extends Controller
     //提交修改
     public function update(UserUpdateRequest $request,ImageUploadHandler $upload,User $user){
         $this->authorize('update',$user);
-        $data=['real_name'=>$request->real_name,'name'=>$request->name];
+        $data=['real_name'=>$request->real_name];
         if(!empty($request->password))
         {
             $data['password']=bcrypt($request->password);

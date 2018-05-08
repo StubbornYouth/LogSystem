@@ -16,7 +16,7 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="name">用户名：</label>
-			    <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }}">
+			    <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }} " disabled>
 			  </div>
 			  <div class="form-group">
 			    <label for="email">Email 地址：</label>
