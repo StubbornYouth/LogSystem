@@ -49,19 +49,17 @@ class WeekSend extends Command
             //获取一周前时间戳
             $befWeek=strtotime("-1 weeks");
             //邮件信息
-            $logs=Log::select('user_id','title','content','created_at')->where('group_id',$group->id)->whereDate('created_at','>',date('Y-m-d',$befWeek))->whereDate('created_at','<=',date('Y-m-d'))->orderBy('user_id','asc')->get();
+            $logs=Log::with('user')->where('group_id',$group->id)->whereDate('created_at','>',date('Y-m-d',$befWeek))->whereDate('created_at','<=',date('Y-m-d'))->orderBy('user_id','asc')->get();
             if(count($logs)>0){
                 foreach($logs as $log){
-                    $name=User::where('id',$log->user_id)->value('real_name');
+                    $name=$log->user->name;
                     $data[$name][]=['title'=>$log->title,'content'=>$log->content,'date'=>$log->created_at];
                 }
                 //组成员邮箱数据
                 foreach($group->getUsers as $user){
                     $to[]=['email'=>$user->email,'name'=>$user->name];
                 }
-                //组名
-                $group_name=Group::where('id',$group->id)->value('name');
-                dispatch(new SendWeekEmail($to,$data,$group_name));
+                dispatch(new SendWeekEmail($to,$data,$group->name));
             }
             
         }      

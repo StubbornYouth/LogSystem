@@ -10,4 +10,8 @@ class Log extends Model
     protected $table='logs';
     
     protected $fillable = ['title','content'];
+
+    public function user(){
+    	return $this->belongsTo(User::class);
+    }
 }

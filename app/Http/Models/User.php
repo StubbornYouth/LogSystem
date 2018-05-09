@@ -43,8 +43,9 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token){
         $this->notify(new ResetPassword($token));
     }
-    //
+    //获取用户所关联的组
     public function groups(){
+        //多对多关联
         return $this->belongsToMany(Group::Class,'members','user_id','group_id');
     }
     //获取加入组的时间
