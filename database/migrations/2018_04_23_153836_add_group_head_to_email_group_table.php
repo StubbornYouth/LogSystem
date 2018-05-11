@@ -14,7 +14,7 @@ class AddGroupHeadToEmailGroupTable extends Migration
     public function up()
     {
         Schema::table('email_group', function (Blueprint $table) {
-            $path=config('app.url').'/'.'uploads/images/head/_default.jpg';
+            $path=config('app.url').'/'.'uploads/images/_default.jpg';
             $table->string('group_head')->nullable()->default($path);
         });
     }

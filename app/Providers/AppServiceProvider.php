@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         \Carbon\Carbon::setLocale('zh');
+        \App\Http\Models\Log::observe(\App\Observers\LogObserver::class);
     }
 
     /**
