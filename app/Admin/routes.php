@@ -8,7 +8,7 @@ Route::group([
     'middleware' => ['web', 'admin'],
     'as' => 'admin::'
 ], function () {
-    Route::get('/', 'UserController@index')->name('main');
+    Route::get('/', 'HomeController@index')->name('main');
 
     ///
     Route::group([
@@ -18,7 +18,7 @@ Route::group([
     	Route::group([
     		'namespace' => 'Groups'
     	],function(){
-    		Route::get('groups','GroupController@index')->name('groups.index');
+    		Route::get('/groups','GroupController@index')->name('groups.index');
     	});
     });
 
