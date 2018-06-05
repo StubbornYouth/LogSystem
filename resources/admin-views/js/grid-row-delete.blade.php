@@ -15,7 +15,7 @@
             function(){
                 $.ajax({
                     method: 'delete',
-                    url: '{{ $url }}' + '/' + id,
+                    url: '{{ $url }}' + '/' + id + '/destory',
                     data: {
                         _token:LA.token
                     },

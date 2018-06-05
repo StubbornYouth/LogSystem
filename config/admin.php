@@ -15,12 +15,12 @@ return [
     /*
      * Logo
      */
-    'logo'      => '<b>Admin</b>LTE',
+    'logo'      => '<b>Log</b>System',
 
     /*
      * Mini-logo
      */
-    'logo-mini' => '<b>A</b>LT',
+    'logo-mini' => '<b>Log</b>',
 
     /**
      * 超级管理员ID，最高权限

@@ -30,18 +30,20 @@
                             <th>组员人数</th>
                             <th>创建时间</th>
                             <th>操作</th>
-                        </tr> 
+                        </tr>
+                        <!--服务注入 第一个参数是参数名 第二个参数是类名或者接口名-->
+                        @inject('groupPresenter',"App\Admin\Presenters\GroupPresenter")
                         @foreach($groups as $group)
                             <tr>
                                 <td>{{ $group->id }}</td>
                                 <td>{{ $group->name }}</td>
-                                <td>{{ $group->group_head }}</td>
-                                <td>{{ $group->create_id }}</td>
+                                <td>{!! $groupPresenter->cover($group->group_head) !!}</td>
+                                <td>{{ $group->user->name }}</td>
                                 <td>{{ $group->commit }}</td>
-                                <td>{{ $group->commit }}</td>
+                                <td>{{ $group->peo_number }}</td>
                                 <td>{{ $group->created_at }}</td>
                                 <td>
-                                    <a href="">
+                                    <a href="{{ route('admin::groups.edit',$group->id) }}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a href="javascript:void(0);" data-id="{{ $group->id }}" class="grid-row-delete">
